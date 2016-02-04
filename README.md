@@ -2,6 +2,13 @@
 
 Puppet module for SLURM client and server
 
+## Usage
+
+(to be written)
+
+For a given node or within a profile, include the `slurm` class, then override default parameters based on how the node is supposed to behave.
+
+
 ## Development
 
 ### Testing
