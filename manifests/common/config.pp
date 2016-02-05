@@ -87,7 +87,7 @@ class slurm::common::config {
 
   sysctl { 'net.core.somaxconn':
     ensure => present,
-    value  => '1024',
+    val    => '1024',
   }
 
 }
