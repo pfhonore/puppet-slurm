@@ -1,11 +1,12 @@
 # Private class
 class slurm::params {
 
-  $spank_plugins          = {}
+  $spank_plugins             = {}
 
-  $slurm_conf_override    = {}
-  $partitionlist          = []
-  $slurmdbd_conf_override = {}
+  $slurm_conf_override       = {}
+  $partitionlist             = []
+  $slurmdbd_conf_override    = {}
+  $slurm_service_systemd_dir = '/usr/lib/systemd/system'
 
   $service_ulimits        = [
     '-l unlimited',

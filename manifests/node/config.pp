@@ -131,6 +131,18 @@ class slurm::node::config {
     soft       => 'unlimited',
   }
 
+  if $::osfamily == 'RedHat' and $::operatingsystemmajrelease == '7' {
+    file { 'slurmd.service':
+      ensure  => 'file',
+      path    => $slurm_service_systemd_dir,
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0644',
+      content => template('slurm/systemd/slurmd.service.erb'),
+      notify  => Service['slurmd'],
+    }
+  }
+
   if $slurm::manage_logrotate {
     #Refer to: http://slurm.schedmd.com/slurm.conf.html#SECTION_LOGGING
     logrotate::rule { 'slurmd':

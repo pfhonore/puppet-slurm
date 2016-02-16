@@ -33,6 +33,18 @@ class slurm::slurmdbd::config {
     notify  => Service['slurmdbd'],
   }
 
+  if $::osfamily == 'RedHat' and $::operatingsystemmajrelease == '7' {
+    file { 'slurmdbd.service':
+      ensure  => 'file',
+      path    => $slurm_service_systemd_dir,
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0644',
+      content => template('slurm/systemd/slurmdbd.service.erb'),
+      notify  => Service['slurmdbd'],
+    }
+  }
+
   if $slurm::manage_logrotate {
     #Refer to: http://slurm.schedmd.com/slurm.conf.html#SECTION_LOGGING
     logrotate::rule { 'slurmdbd':
