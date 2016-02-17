@@ -1,14 +1,14 @@
 [Unit]
 Description=Slurm node daemon
 After=network.target
-ConditionPathExists=<%= @slurm::slurm_conf_path %>
+ConditionPathExists=<%= scope.lookupvar('slurm::slurm_conf_path') %>
 
 [Service]
 Type=forking
 EnvironmentFile=-/etc/sysconfig/slurmd
 ExecStart=/usr/sbin/slurmd $SLURMD_OPTIONS
 ExecReload=/bin/kill -HUP $MAINPID
-PIDFile=<%= @slurm::pid_dir %>/slurmd.pid
+PIDFile=<%= scope.lookupvar('slurm::pid_dir') %>/slurmd.pid
 KillMode=process
 LimitNOFILE=51200
 LimitMEMLOCK=infinity

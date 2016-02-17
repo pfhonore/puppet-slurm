@@ -1,14 +1,14 @@
 [Unit]
 Description=Slurm DBD accounting daemon
 After=network.target
-ConditionPathExists=<%= @slurm::slurmdbd_conf_path %>
+ConditionPathExists=<%= scope.lookupvar('slurm::slurmdbd_conf_path') %>
 
 [Service]
 Type=forking
 EnvironmentFile=-/etc/sysconfig/slurmdbd
 ExecStart=/usr/sbin/slurmdbd $SLURMDBD_OPTIONS
 ExecReload=/bin/kill -HUP $MAINPID
-PIDFile=<%= @slurm::pid_dir %>/slurmdbd.pid
+PIDFile=<%= scope.lookupvar('slurm::pid_dir') %>/slurmdbd.pid
 
 [Install]
 WantedBy=multi-user.target
