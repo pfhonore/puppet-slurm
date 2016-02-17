@@ -1,7 +1,7 @@
 [Unit]
 Description=Slurm DBD accounting daemon
 After=network.target
-ConditionPathExists=<%= @slurm::slurm_conf_path %>/slurmdbd.conf
+ConditionPathExists=<%= @slurm::slurmdbd_conf_path %>
 
 [Service]
 Type=forking
