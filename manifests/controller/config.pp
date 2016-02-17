@@ -46,7 +46,7 @@ class slurm::controller::config {
   if $::osfamily == 'RedHat' and $::operatingsystemmajrelease == '7' {
     file { 'slurmctld.service':
       ensure  => 'file',
-      path    => $slurm_service_systemd_dir,
+      path    => $slurm::slurm_service_systemd_dir,
       owner   => 'root',
       group   => 'root',
       mode    => '0644',
