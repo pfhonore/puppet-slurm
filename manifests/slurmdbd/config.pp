@@ -36,7 +36,7 @@ class slurm::slurmdbd::config {
   if $::osfamily == 'RedHat' and $::operatingsystemmajrelease == '7' {
     file { 'slurmdbd.service':
       ensure  => 'file',
-      path    => $slurm::slurm_service_systemd_dir,
+      path    => "$slurm::slurm_service_systemd_dir/$title",
       owner   => 'root',
       group   => 'root',
       mode    => '0644',
