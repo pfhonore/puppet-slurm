@@ -46,13 +46,13 @@ class slurm::controller::config {
   if $::osfamily == 'RedHat' and $::operatingsystemmajrelease == '7' {
     augeas { 'ConditionPathExists':
       context => "$slurm::slurm_service_systemd_dir/slurmctld.service",
-      changes => 'set ConditionPathExists $slurm::slurm_conf_path'
+      changes => 'set ConditionPathExists $slurm::slurm_conf_path',
       notify  => Service['slurmctld'],
     }
 
     augeas { 'PIDFile':
       context => "$slurm::slurm_service_systemd_dir/slurmctld.service",
-      changes => 'set PIDFile $slurm::pid_dir/slurmctld.pid'
+      changes => 'set PIDFile $slurm::pid_dir/slurmctld.pid',
       notify  => Service['slurmctld'],
     }
   }
