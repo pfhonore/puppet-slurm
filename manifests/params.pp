@@ -6,7 +6,7 @@ class slurm::params {
   $slurm_conf_override       = {}
   $partitionlist             = []
   $slurmdbd_conf_override    = {}
-  $slurm_service_systemd_dir = '/usr/lib/systemd/system'
+  $slurm_augeas_systemd_dir = '/files/lib/systemd/system'
 
   $service_ulimits        = [
     '-l unlimited',
