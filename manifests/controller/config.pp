@@ -45,7 +45,7 @@ class slurm::controller::config {
 
   if $::osfamily == 'RedHat' and $::operatingsystemmajrelease == '7' {
     augeas { 'slurmctld.service':
-      context => "$slurm::slurm_service_systemd_dir/$title",
+      context => "$slurm::slurm_service_systemd_dir/slurmctld.service",
       changes => [
         "set ConditionPathExists $slurm::slurm_conf_path",
         "set PIDFile $slurm::pid_dir/slurmctld.pid",
