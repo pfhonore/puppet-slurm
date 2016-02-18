@@ -47,8 +47,8 @@ class slurm::controller::config {
     augeas { 'slurmctld.service':
       context => "$slurm::slurm_augeas_systemd_dir/slurmctld.service",
       changes => [
-        "set ConditionPathExists $slurm::slurm_conf_path",
-        "set PIDFile $slurm::pid_dir/slurmctld.pid",
+        "set Unit/ConditionPathExists $slurm::slurm_conf_path",
+        "set Service/PIDFile $slurm::pid_dir/slurmctld.pid",
       ],
       notify  => Service['slurmctld'],
     }
