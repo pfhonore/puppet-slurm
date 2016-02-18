@@ -34,13 +34,15 @@ class slurm::slurmdbd::config {
   }
 
   if $::osfamily == 'RedHat' and $::operatingsystemmajrelease == '7' {
-    file { 'slurmdbd.service':
-      ensure  => 'file',
-      path    => "$slurm::slurm_service_systemd_dir/$title",
-      owner   => 'root',
-      group   => 'root',
-      mode    => '0644',
-      content => template('slurm/systemd/slurmdbd.service.erb'),
+    augeas { 'ConditionPathExists':
+      context => "$slurm::slurm_service_systemd_dir/slurmdbd.service",
+      changes => 'set ConditionPathExists $slurm::slurm_conf_path'
+      notify  => Service['slurmdbd'],
+    }
+
+    augeas { 'PIDFile':
+      context => "$slurm::slurm_service_systemd_dir/slurmdbd.service",
+      changes => 'set PIDFile $slurm::pid_dir/slurmdbd.pid'
       notify  => Service['slurmdbd'],
     }
   }
