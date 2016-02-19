@@ -132,6 +132,7 @@ class slurm::node::config {
   }
 
   if $::osfamily == 'RedHat' and $::operatingsystemmajrelease == '7' {
+    include ::systemd
     augeas { 'slurmd.service':
       context => "$slurm::slurm_augeas_systemd_dir/slurmd.service",
       changes => [

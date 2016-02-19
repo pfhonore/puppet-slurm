@@ -44,6 +44,7 @@ class slurm::controller::config {
   }
 
   if $::osfamily == 'RedHat' and $::operatingsystemmajrelease == '7' {
+    include ::systemd
     augeas { 'slurmctld.service':
       context => "$slurm::slurm_augeas_systemd_dir/slurmctld.service",
       changes => [
