@@ -51,7 +51,8 @@ class slurm::controller::config {
         "set Service/PIDFile/value $slurm::pid_dir/slurmctld.pid",
       ],
       notify  => Service['slurmctld'],
-    }
+    } ~>
+    Exec['systemctl-daemon-reload']
   }
 
   if $slurm::manage_logrotate {
