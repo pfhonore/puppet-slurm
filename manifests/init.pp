@@ -140,6 +140,9 @@ class slurm (
   $manage_slurmctld_prolog      = true,
   $slurmctld_prolog             = undef,
   $slurmctld_prolog_source      = undef,
+  $manage_job_submit_plugin     = true,
+  $job_submit_plugin            = undef,
+  $job_submit_plugin_lua_source = undef,
 
   # cgroups
   $cgroup_conf_template             = 'slurm/cgroup/cgroup.conf.erb',
@@ -270,6 +273,7 @@ class slurm (
     'HealthCheckProgram' => $health_check_program,
     'JobCheckpointDir' => $job_checkpoint_dir,
     'JobCompLoc' => $job_comp,
+    'JobSubmitPlugins' => $job_submit_plugin,
     'PlugStackConfig' => $plugstack_conf_path,
     'Prolog' => $prolog,
     'PrologSlurmctld' => $slurmctld_prolog,

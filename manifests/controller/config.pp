@@ -93,6 +93,17 @@ class slurm::controller::config {
         }
       }
     }
+
+    if $slurm::manage_job_submit_plugin and $slurm::job_submit_plugin_lua_source {
+      file { 'job_submit_lua':
+        ensure => 'file',
+        path   => '/etc/slurm/job_submit.lua',
+        source => $slurm::job_submit_plugin_lua_source,
+        owner  => 'root',
+        group  => 'root',
+        mode   => '0755',
+      }
+    }
   }
 
   if $::osfamily == 'RedHat' and $::operatingsystemmajrelease == '7' {
