@@ -134,6 +134,12 @@ class slurm (
   $manage_task_prolog           = true,
   $task_prolog                  = undef,
   $task_prolog_source           = undef,
+  $manage_job_comp              = true,
+  $job_comp                     = undef,
+  $job_comp_source              = undef,
+  $manage_slurmctld_prolog      = true,
+  $slurmctld_prolog             = undef,
+  $slurmctld_prolog_source      = undef,
 
   # cgroups
   $cgroup_conf_template             = 'slurm/cgroup/cgroup.conf.erb',
@@ -263,8 +269,10 @@ class slurm (
     'Epilog' => $epilog,
     'HealthCheckProgram' => $health_check_program,
     'JobCheckpointDir' => $job_checkpoint_dir,
+    'JobCompLoc' => $job_comp,
     'PlugStackConfig' => $plugstack_conf_path,
     'Prolog' => $prolog,
+    'PrologSlurmctld' => $slurmctld_prolog,
     'SlurmUser' => $slurm_user,
     'SlurmctldLogFile' => $_slurmctld_log_file,
     'SlurmctldPidFile' => "${pid_dir}/slurmctld.pid",

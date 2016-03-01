@@ -43,6 +43,58 @@ class slurm::controller::config {
     }
   }
 
+  if $slurm::manage_scripts {
+    if $slurm::manage_job_comp and $slurm::job_comp {
+      if '*' in $slurm::job_comp {
+        file { 'job_comp':
+          ensure       => 'directory',
+          path         => dirname($slurm::job_comp),
+          source       => $slurm::job_comp_source,
+          owner        => 'root',
+          group        => 'root',
+          mode         => '0755',
+          recurse      => true,
+          recurselimit => 1,
+          purge        => true,
+        }
+      } else {
+        file { 'job_comp':
+          ensure => 'file',
+          path   => $slurm::job_comp,
+          source => $slurm::job_comp_source,
+          owner  => 'root',
+          group  => 'root',
+          mode   => '0755',
+        }
+      }
+    }
+
+    if $slurm::manage_slurmctld_prolog and $slurm::slurmctld_prolog {
+      if '*' in $slurm::slurmctld_prolog {
+        file { 'slurmctld_prolog':
+          ensure       => 'directory',
+          path         => dirname($slurm::slurmctld_prolog),
+          source       => $slurm::slurmctld_prolog_source,
+          owner        => 'root',
+          group        => 'root',
+          mode         => '0755',
+          recurse      => true,
+          recurselimit => 1,
+          purge        => true,
+        }
+      } else {
+        file { 'slurmctld_prolog':
+          ensure => 'file',
+          path   => $slurm::slurmctld_prolog,
+          source => $slurm::slurmctld_prolog_source,
+          owner  => 'root',
+          group  => 'root',
+          mode   => '0755',
+        }
+      }
+    }
+  }
+
   if $::osfamily == 'RedHat' and $::operatingsystemmajrelease == '7' {
     include ::systemd
     augeas { 'slurmctld.service':
