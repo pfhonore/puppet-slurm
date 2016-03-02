@@ -276,16 +276,6 @@ shared_examples_for 'slurm::node::config' do
   end
 
   it do
-    should contain_limits__limits('unlimited_memlock').with({
-      :ensure      => 'present',
-      :user        => '*',
-      :limit_type  => 'memlock',
-      :hard        => 'unlimited',
-      :soft        => 'unlimited',
-    })
-  end
-
-  it do
     should contain_logrotate__rule('slurmd').with({
       :path          => '/var/log/slurm/slurmd.log',
       :compress      => 'true',

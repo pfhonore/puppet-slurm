@@ -29,7 +29,6 @@
     { "name": "puppetlabs/mysql", "version_requirement": ">=2.3.0 <4.0.0" },
     { "name": "stahnma/epel", "version_requirement": ">= 0.0.6 <2.0.0" },
     { "name": "duritong/sysctl", "version_requirement": ">= 0.0.11" },
-    { "name": "saz/limits", "version_requirement": "2.x" },
     { "name": "richardc/datacat", "version_requirement": ">=0.6.x" },
     { "name": "treydock/munge", "version_requirement": "0.x" },
     { "name": "camptocamp/systemd", "version_requirement": ">=0.2.2" }
