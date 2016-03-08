@@ -62,6 +62,7 @@ class slurm (
   $job_checkpoint_dir_nfs_device  = undef,
   $job_checkpoint_dir_nfs_options = 'rw,sync,noexec,nolock,auto',
 
+
   # Cluster config
   $cluster_name       = 'linux',
   $control_machine    = 'slurm',
@@ -108,6 +109,7 @@ class slurm (
   $job_checkpoint_dir     = '/var/lib/slurm/checkpoint',
   $slurmctld_log_file     = '/var/log/slurm/slurmctld.log',
   $state_save_location    = '/var/lib/slurm/state',
+  $nfs_conf_location      = '/var/lib/slurm/etc',
 
   # slurmdbd.conf
   $slurmdbd_log_file      = '/var/log/slurm/slurmdbd.log',

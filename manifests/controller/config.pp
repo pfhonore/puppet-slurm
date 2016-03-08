@@ -19,6 +19,15 @@ class slurm::controller::config {
     require => File[$slurm::shared_state_dir],
   }
 
+  file { 'NFSConfLocation':
+    ensure => 'directory',
+    path   => $slurm::nfs_conf_location,
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0755',
+    require => File[$slurm::shared_state_dir],
+  }
+
   if $slurm::manage_state_dir_nfs_mount {
     mount { 'StateSaveLocation':
       ensure  => 'mounted',
