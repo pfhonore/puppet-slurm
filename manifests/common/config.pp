@@ -4,6 +4,23 @@ class slurm::common::config {
   create_resources('slurm::spank', $slurm::spank_plugins)
 
   if $slurm::manage_slurm_conf {
+    file { 'SlurmConfNFSMountPoint':
+      ensure  => 'present',
+      path    => $slurm::slurm_conf_nfs_mount,
+    }
+
+    if !$slurm::controller {
+      mount { 'SlurmConfNFSMount':
+        ensure  => 'mounted',
+        name    => $slurm::slurm_conf_nfs_mount,
+        atboot  => true,
+        device  => $slurm::slurm_conf_nfs_device,
+        fstype  => 'nfs',
+        options => $slurm::slurm_conf_nfs_options,
+        require => File['SlurmConfNFSMountPoint'],
+      }
+    }
+
     file { 'slurm.conf':
       ensure  => 'present',
       path    => $slurm::slurm_conf_path,
