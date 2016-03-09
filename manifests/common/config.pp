@@ -7,7 +7,7 @@ class slurm::common::config {
 
     if !$slurm::controller {
       file { 'SlurmConfNFSMountPoint':
-        ensure  => 'present',
+        ensure  => 'directory',
         path    => $slurm::slurm_conf_nfs_location,
       }
 
