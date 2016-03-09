@@ -111,7 +111,7 @@ class slurm (
   $job_checkpoint_dir     = '/var/lib/slurm/checkpoint',
   $slurmctld_log_file     = '/var/log/slurm/slurmctld.log',
   $state_save_location    = '/var/lib/slurm/state',
-  $slurm_conf_nfs_mount   = '/var/lib/slurm/etc',
+  $slurm_conf_nfs_location = '/var/lib/slurm/etc',
 
   # slurmdbd.conf
   $slurmdbd_log_file      = '/var/log/slurm/slurmdbd.log',
