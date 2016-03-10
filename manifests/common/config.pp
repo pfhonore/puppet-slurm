@@ -23,45 +23,21 @@ class slurm::common::config {
     }
 
     file { 'slurm.conf':
-      ensure  => 'present',
+      ensure  => 'link',
       path    => $slurm::slurm_conf_path,
-      content => $slurm::slurm_conf_content,
-      source  => $slurm::slurm_conf_source,
-      owner   => 'root',
-      group   => 'root',
-      mode    => '0644',
+      target  => "${slurm::slurm_conf_nfs_location}/slurm.conf",
     }
 
     file { 'slurm-partitions.conf':
-      ensure  => 'present',
+      ensure  => 'link',
       path    => $slurm::partition_conf_path,
-      content => $slurm::partitionlist_content,
-      source  => $slurm::partitionlist_source,
-      owner   => 'root',
-      group   => 'root',
-      mode    => '0644',
+      target  => "${slurm::slurm_conf_nfs_location}/partitions.conf",
     }
 
-    if $slurm::node_source {
-      file { 'slurm-nodes.conf':
-        ensure => 'present',
-        path   => $slurm::node_conf_path,
-        source => $slurm::node_source,
-        owner  => 'root',
-        group  => 'root',
-        mode   => '0644',
-      }
-    } else {
-      datacat { 'slurm-nodes.conf':
-        ensure   => 'present',
-        path     => $slurm::node_conf_path,
-        template => 'slurm/slurm.conf/nodes.conf.erb',
-        owner    => 'root',
-        group    => 'root',
-        mode     => '0644',
-      }
-
-      Datacat_fragment <<| tag == $slurm::slurm_nodelist_tag |>>
+    file { 'slurm-nodes.conf':
+      ensure => 'link',
+      path   => $slurm::node_conf_path,
+      target => "${slurm::slurm_conf_nfs_location}/nodes.conf",
     }
 
     file { 'plugstack.conf.d':
