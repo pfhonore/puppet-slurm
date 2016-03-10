@@ -28,6 +28,55 @@ class slurm::controller::config {
     require => File[$slurm::shared_state_dir],
   }
 
+  if $slurm::manage_slurm_conf {
+
+    file { 'NFS slurm.conf':
+      ensure  => 'present',
+      path    => "${slurm::slurm_conf_nfs_location}/slurm.conf",
+      content => $slurm::slurm_conf_content,
+      source  => $slurm::slurm_conf_source,
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0644',
+      require => File['SlurmConfNFSLocation'],
+    }
+
+    file { 'NFS slurm-partitions.conf':
+      ensure  => 'present',
+      path    => "${slurm::slurm_conf_nfs_location}/partitions.conf",
+      content => $slurm::partitionlist_content,
+      source  => $slurm::partitionlist_source,
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0644',
+      require => File['SlurmConfNFSLocation'],
+    }
+
+    if $slurm::node_source {
+      file { 'NFS slurm-nodes.conf':
+        ensure => 'present',
+        path   => "${slurm::slurm_conf_nfs_location}/nodes.conf",
+        source => $slurm::node_source,
+        owner  => 'root',
+        group  => 'root',
+        mode   => '0644',
+        require => File['SlurmConfNFSLocation'],
+      }
+    } else {
+      datacat { 'NFS slurm-nodes.conf':
+        ensure   => 'present',
+        path     => "${slurm::slurm_conf_nfs_location}/nodes.conf",
+        template => 'slurm/slurm.conf/nodes.conf.erb',
+        owner    => 'root',
+        group    => 'root',
+        mode     => '0644',
+        require => File['SlurmConfNFSLocation'],
+      }
+
+      Datacat_fragment <<| tag == $slurm::slurm_nodelist_tag |>>
+    }
+  }
+
   if $slurm::manage_state_dir_nfs_mount {
     mount { 'StateSaveLocation':
       ensure  => 'mounted',
