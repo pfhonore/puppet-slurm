@@ -52,7 +52,7 @@ class slurm::node {
   }
 
   @@datacat_fragment { "slurm.conf-node-${::hostname}":
-    target => 'NFS slurm-nodes.conf',
+    target => 'slurm-nodes.conf',
     data   => $node_fragment_data,
     tag    => $slurm::slurm_nodelist_tag,
   }

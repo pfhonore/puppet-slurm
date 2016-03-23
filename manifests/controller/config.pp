@@ -53,7 +53,7 @@ class slurm::controller::config {
     }
 
     if $slurm::node_source {
-      file { 'NFS slurm-nodes.conf':
+      file { 'slurm-nodes.conf':
         ensure => 'present',
         path   => "${slurm::slurm_conf_nfs_location}/nodes.conf",
         source => $slurm::node_source,
@@ -63,7 +63,7 @@ class slurm::controller::config {
         require => File['SlurmConfNFSLocation'],
       }
     } else {
-      datacat { 'NFS slurm-nodes.conf':
+      datacat { 'slurm-nodes.conf':
         ensure   => 'present',
         path     => "${slurm::slurm_conf_nfs_location}/nodes.conf",
         template => 'slurm/slurm.conf/nodes.conf.erb',
