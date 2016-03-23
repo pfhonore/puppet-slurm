@@ -25,18 +25,21 @@ class slurm::common::config {
         ensure  => 'link',
         path    => $slurm::slurm_conf_path,
         target  => "${slurm::slurm_conf_nfs_location}/slurm.conf",
+        require => Mount['SlurmConfNFSMount'],
       }
 
       file { 'slurm-partitions.conf':
         ensure  => 'link',
         path    => $slurm::partition_conf_path,
         target  => "${slurm::slurm_conf_nfs_location}/partitions.conf",
+        require => Mount['SlurmConfNFSMount'],
       }
 
       file { 'Link slurm-nodes.conf':
         ensure => 'link',
         path   => $slurm::node_conf_path,
         target => "${slurm::slurm_conf_nfs_location}/nodes.conf",
+        require => Mount['SlurmConfNFSMount'],
       }
     }
 
