@@ -20,24 +20,24 @@ class slurm::common::config {
         options => $slurm::slurm_conf_nfs_options,
         require => File['SlurmConfNFSMountPoint'],
       }
-    }
 
-    file { 'slurm.conf':
-      ensure  => 'link',
-      path    => $slurm::slurm_conf_path,
-      target  => "${slurm::slurm_conf_nfs_location}/slurm.conf",
-    }
+      file { 'slurm.conf':
+        ensure  => 'link',
+        path    => $slurm::slurm_conf_path,
+        target  => "${slurm::slurm_conf_nfs_location}/slurm.conf",
+      }
 
-    file { 'slurm-partitions.conf':
-      ensure  => 'link',
-      path    => $slurm::partition_conf_path,
-      target  => "${slurm::slurm_conf_nfs_location}/partitions.conf",
-    }
+      file { 'slurm-partitions.conf':
+        ensure  => 'link',
+        path    => $slurm::partition_conf_path,
+        target  => "${slurm::slurm_conf_nfs_location}/partitions.conf",
+      }
 
-    file { 'Link slurm-nodes.conf':
-      ensure => 'link',
-      path   => $slurm::node_conf_path,
-      target => "${slurm::slurm_conf_nfs_location}/nodes.conf",
+      file { 'Link slurm-nodes.conf':
+        ensure => 'link',
+        path   => $slurm::node_conf_path,
+        target => "${slurm::slurm_conf_nfs_location}/nodes.conf",
+      }
     }
 
     file { 'plugstack.conf.d':
