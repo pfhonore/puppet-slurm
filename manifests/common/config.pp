@@ -34,7 +34,7 @@ class slurm::common::config {
       target  => "${slurm::slurm_conf_nfs_location}/partitions.conf",
     }
 
-    file { 'slurm-nodes.conf':
+    file { 'Link slurm-nodes.conf':
       ensure => 'link',
       path   => $slurm::node_conf_path,
       target => "${slurm::slurm_conf_nfs_location}/nodes.conf",
