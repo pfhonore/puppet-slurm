@@ -301,7 +301,7 @@ class slurm (
   $slurm_conf           = merge($slurm_conf_defaults, $slurm_conf_override)
 
   $slurmdbd_conf_local_defaults = {
-    'ArchiveDir' => $slurmdbd_archive_dir
+    'ArchiveDir' => $slurmdbd_archive_dir,
     'DbdHost' => $::hostname,
     'DbdPort' => $slurmdbd_port,
     'LogFile' => $_slurmdbd_log_file,
