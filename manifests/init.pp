@@ -121,6 +121,7 @@ class slurm (
   $slurmdbd_storage_port  = '3306',
   $slurmdbd_storage_type  = 'accounting_storage/mysql',
   $slurmdbd_storage_user  = 'slurmdbd',
+  $slurmdbd_archive_dir   = '/var/lib/slurm/archive',
   $slurmdbd_conf_override = $slurm::params::slurmdbd_conf_override,
 
   # slurm.conf - epilog/prolog
@@ -300,6 +301,7 @@ class slurm (
   $slurm_conf           = merge($slurm_conf_defaults, $slurm_conf_override)
 
   $slurmdbd_conf_local_defaults = {
+    'ArchiveDir' => $slurmdbd_archive_dir
     'DbdHost' => $::hostname,
     'DbdPort' => $slurmdbd_port,
     'LogFile' => $_slurmdbd_log_file,

@@ -33,6 +33,14 @@ class slurm::slurmdbd::config {
     notify  => Service['slurmdbd'],
   }
 
+  file { 'SlurmDBDArchive':
+    ensure => 'directory',
+    path   => $slurm::slurmdbd_archive_dir,
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0755',
+  }
+
   if $::osfamily == 'RedHat' and $::operatingsystemmajrelease == '7' {
     include ::systemd
     augeas { 'slurmdbd.service':
