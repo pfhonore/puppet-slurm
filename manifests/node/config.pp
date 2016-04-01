@@ -114,7 +114,7 @@ class slurm::node::config {
       }
     }
 
-    if $slurm::manage_helth_check and $slurm::health_check_program {
+    if $slurm::manage_health_check and $slurm::health_check_program {
       file { 'health_check':
         ensure => 'file',
         path   => $slurm::health_check_program,
