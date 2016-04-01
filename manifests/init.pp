@@ -128,6 +128,7 @@ class slurm (
   $manage_epilog                = true,
   $epilog                       = undef,
   $epilog_source                = undef,
+  $manage_health_check          = true,
   $health_check_program         = undef,
   $health_check_program_source  = undef,
   $manage_prolog                = true,
