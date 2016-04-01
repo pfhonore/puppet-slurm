@@ -113,6 +113,17 @@ class slurm::node::config {
         mode   => '0755',
       }
     }
+
+    if $slurm::manage_helth_check and $slurm::health_check_program {
+      file { 'health_check':
+        ensure => 'file',
+        path   => $slurm::health_check_program,
+        source => $slurm::health_check_program_source,
+        owner  => 'root',
+        group  => 'root',
+        mode   => '0755',
+      }
+    }
   }
 
   file { 'SlurmdSpoolDir':
