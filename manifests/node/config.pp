@@ -126,6 +126,15 @@ class slurm::node::config {
     }
   }
 
+  if $::gpu_node == 'true' {
+    file { '/etc/slurm/gres.conf':
+      content => template('slurm/gres/gres.conf.erb'),
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0644',
+    }
+  }
+
   file { 'SlurmdSpoolDir':
     ensure => 'directory',
     path   => $slurm::slurmd_spool_dir,
