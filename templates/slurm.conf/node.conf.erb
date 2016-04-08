@@ -9,6 +9,7 @@ real_memory = scope.lookupvar('slurm::real_memory') || 'UNSET'
 tmp_disk = scope.lookupvar('slurm::tmp_disk') || 'UNSET'
 weight = scope.lookupvar('slurm::node_weight') || 'UNSET'
 feature = scope.lookupvar('slurm::feature') || 'UNSET'
+gres = scope.lookupvar('slurm::gres') || 'UNSET'
 state = scope.lookupvar('slurm::state')
 node = []
 node << "NodeName=#{name}"
