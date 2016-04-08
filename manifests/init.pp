@@ -61,7 +61,7 @@ class slurm (
   $state_dir_nfs_options          = 'rw,sync,noexec,nolock,auto',
   $job_checkpoint_dir_nfs_device  = undef,
   $job_checkpoint_dir_nfs_options = 'rw,sync,noexec,nolock,auto',
-  $slurm_conf_nfs_device          = undef,
+  $slurm_conf_nfs_device          = '',
   $slurm_conf_nfs_options         = 'rw,sync,noexec,nolock,auto',
 
 
