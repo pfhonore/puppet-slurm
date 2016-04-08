@@ -103,6 +103,7 @@ class slurm (
   $tmp_disk         = '16000',
   $node_weight      = 'UNSET',
   $feature          = 'UNSET',
+  $gres             = 'UNSET',
   $state            = 'UNKNOWN',
   $slurmd_log_file  = '/var/log/slurm/slurmd.log',
   $slurmd_spool_dir = '/var/spool/slurmd',

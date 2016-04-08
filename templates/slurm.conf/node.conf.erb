@@ -22,6 +22,7 @@ node << "RealMemory=#{real_memory}" if real_memory != 'UNSET'
 node << "TmpDisk=#{tmp_disk}" if tmp_disk != 'UNSET'
 node << "Weight=#{weight}" if weight != 'UNSET'
 node << "Feature=#{feature}" if feature != 'UNSET'
+node << "GRES=#{gres}" if feature != 'UNSET'
 node << "State=#{state}"
 -%>
 <%= node.join(" ") -%>
