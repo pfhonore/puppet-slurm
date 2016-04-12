@@ -47,6 +47,7 @@ class slurm (
   $logrotate_slurm_postrotate    = undef,
   $logrotate_slurmdbd_postrotate = undef,
   $use_syslog                    = false,
+  $manage_slurm_conf_nfs_mount   = false,
 
   # Behavior overrides - controller
   $manage_state_dir_nfs_mount           = false,
@@ -61,7 +62,7 @@ class slurm (
   $state_dir_nfs_options          = 'rw,sync,noexec,nolock,auto',
   $job_checkpoint_dir_nfs_device  = undef,
   $job_checkpoint_dir_nfs_options = 'rw,sync,noexec,nolock,auto',
-  $slurm_conf_nfs_device          = '',
+  $slurm_conf_nfs_device          = undef,
   $slurm_conf_nfs_options         = 'rw,sync,noexec,nolock,auto',
 
 

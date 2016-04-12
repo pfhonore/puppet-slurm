@@ -5,41 +5,44 @@ class slurm::common::config {
 
   if $slurm::manage_slurm_conf {
 
-    if !$slurm::controller {
-      file { 'SlurmConfNFSMountPoint':
-        ensure  => 'directory',
-        path    => $slurm::slurm_conf_nfs_location,
-      }
+    if $slurm::manage_slurm_conf_nfs_mount {
 
-      mount { 'SlurmConfNFSMount':
-        ensure  => 'mounted',
-        name    => $slurm::slurm_conf_nfs_location,
-        atboot  => true,
-        device  => $slurm::slurm_conf_nfs_device,
-        fstype  => 'nfs',
-        options => $slurm::slurm_conf_nfs_options,
-        require => File['SlurmConfNFSMountPoint'],
-      }
+      if !$slurm::controller {
+        file { 'SlurmConfNFSMountPoint':
+          ensure  => 'directory',
+          path    => $slurm::slurm_conf_nfs_location,
+        }
 
-      file { 'slurm.conf':
-        ensure  => 'link',
-        path    => $slurm::slurm_conf_path,
-        target  => "${slurm::slurm_conf_nfs_location}/slurm.conf",
-        require => Mount['SlurmConfNFSMount'],
-      }
+        mount { 'SlurmConfNFSMount':
+          ensure  => 'mounted',
+          name    => $slurm::slurm_conf_nfs_location,
+          atboot  => true,
+          device  => $slurm::slurm_conf_nfs_device,
+          fstype  => 'nfs',
+          options => $slurm::slurm_conf_nfs_options,
+          require => File['SlurmConfNFSMountPoint'],
+        }
 
-      file { 'slurm-partitions.conf':
-        ensure  => 'link',
-        path    => $slurm::partition_conf_path,
-        target  => "${slurm::slurm_conf_nfs_location}/partitions.conf",
-        require => Mount['SlurmConfNFSMount'],
-      }
+        file { 'slurm.conf':
+          ensure  => 'link',
+          path    => $slurm::slurm_conf_path,
+          target  => "${slurm::slurm_conf_nfs_location}/slurm.conf",
+          require => Mount['SlurmConfNFSMount'],
+        }
 
-      file { 'Link slurm-nodes.conf':
-        ensure => 'link',
-        path   => $slurm::node_conf_path,
-        target => "${slurm::slurm_conf_nfs_location}/nodes.conf",
-        require => Mount['SlurmConfNFSMount'],
+        file { 'slurm-partitions.conf':
+          ensure  => 'link',
+          path    => $slurm::partition_conf_path,
+          target  => "${slurm::slurm_conf_nfs_location}/partitions.conf",
+          require => Mount['SlurmConfNFSMount'],
+        }
+
+        file { 'Link slurm-nodes.conf':
+          ensure => 'link',
+          path   => $slurm::node_conf_path,
+          target => "${slurm::slurm_conf_nfs_location}/nodes.conf",
+          require => Mount['SlurmConfNFSMount'],
+        }
       }
     }
 
