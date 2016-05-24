@@ -4,10 +4,21 @@ Puppet module for SLURM client and server
 
 ## Usage
 
-(to be written)
+To use this module simply include `slurm` class for the hosts on which you wish to install slurm.  By default the host will be considered a compute node. There are a series of control parameters which will override the default behavior, those are defined below.  In order to keep hiera from getting bloated it is recommended that you use puppet groups to define the cluster you wish to set up, and then simply include the group along with any host specific settings you have.
 
-For a given node or within a profile, include the `slurm` class, then override default parameters based on how the node is supposed to behave.
+###Parameters
 
+This is not exhaustive but will cover most of the parameters you can set for this class.
+
+`slurm::controller`: Boolean that decides if this host you are on will act as the slurm master, namely run the slurmctld process. Default is false.
+`slurm::node`: Boolean that decides if this host will be a slurm client, namely run the slurmd process and accept jobs.  Default is true.
+`slurm::slurmdbd`: Boolean that decides if this host will host the database, namely run slurmdbd. Default is false.
+`slurm::version`: String that dictates what version of slurm this host will get.  Default is present.
+`slurm::release`: String that dictates if further configuration parameters are allowed depending on major version as new features are added in slurm all the time.  Default is 14.03.  Currently up to 15.08 is defined.
+`slurm::slurm_user`: String that dictates the name for the slurm user. By default slurm does not make it's own user but assumes that a service account is going to be used to manage slurm. This sets up a local user to take this role and makes it uniform across the cluster. Default is slurm.
+`slurm::slurm_user_uid`: Integer that dictates the uid for `slurm_user`. slurm requires that the uid is consistent across all hosts in the cluster.  Default is undefined.
+`slurm::slurm_user_group`: String that dictates the name of the `slurm_user` group.  Similar to `slurm_user` but now for that user's group. It needs to be consistent across all hosts in a cluster. Default is slurm.
+`slurm::slurm_group_gid`: Integer that dictates the gid for the local slurm user group.  Similar to the `slurm_user_uid` but now for that user's group.  It needs to be consistent across all hosts in a cluster. Default is undefined.
 
 ## Development
 
