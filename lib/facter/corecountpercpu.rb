@@ -7,7 +7,8 @@
 # Rants: Nacho Barrientos <nacho.barrientos@cern.ch>
 #
 
-require 'facter/util/file_read'
+#doesn't exist in facter 3+
+#require 'facter/util/file_read'
 
 default_corecount = 1
 source = '/proc/cpuinfo'
@@ -16,7 +17,9 @@ Facter.add('corecountpercpu') do
   confine :kernel => :linux
 
   if File.exists?(source)
-    output = Facter::Util::FileRead.read(source)
+
+    #output = Facter::Util::FileRead.read(source)
+    output = File.read(source)
     result = output[/^cpu cores.*(\d+)/, 1]
 
     setcode do
