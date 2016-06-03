@@ -5,7 +5,8 @@
 # Caveats: It assumes homogeneous physical CPUs
 #
 
-require 'facter/util/file_read'
+#Doesn't exist in facter3+
+#require 'facter/util/file_read'
 
 default_siblings_count = 1
 source = '/proc/cpuinfo'
@@ -14,7 +15,8 @@ Facter.add('processor_siblings_count') do
   confine :kernel => :linux
 
   if File.exists?(source)
-    output = Facter::Util::FileRead.read(source)
+    #output = Facter::Util::FileRead.read(source)
+    output = File.read(source)
     result = output[/^siblings.*(\d+)/, 1]
 
     setcode do
