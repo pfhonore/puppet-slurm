@@ -7,7 +7,7 @@ class slurm::node::service {
     name       => 'slurm',
     #hasstatus  => false,
     #hasrestart => true,
-    #pattern    => "slurmd -f ${slurm::slurm_conf_path}",
+    pattern    => "slurmd -f ${slurm::slurm_conf_path}",
   }
 
 }
