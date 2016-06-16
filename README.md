@@ -51,8 +51,8 @@ This is not exhaustive but will cover most of the parameters you can set for thi
 * `slurm::slurmctld_prolog`: String that sets the location of the slurmctld prolog on the slurm master.  Default is undefined.
 * `slurm::slurmctld_prolog_source`: String that sets where puppet will get the source for the slurmctld prolog from.  Default is undefined.
 * `slurm::manage_job_submit_plugin`: Boolean that tells puppet whether this module will manage the slurm job submit plugin.  Default is true.
-* `slurm::job_submit_plugin`: String that sets the location of the job submit plugin on the slurm master.  Default is undefined.
-* `slurm::job_submit_plugin_lua_source`: String that sets where puppet will get the source for the job submit plugin from.  Default is undefined.
+* `slurm::job_submit_plugin`: String that sets which job submit plugin you are using.  Default is undefined.
+* `slurm::job_submit_plugin_lua_source`: String that sets where puppet will get the source for the job submit plugin from if you are using the lua plugin.  Default is undefined.
 * `slurm::manage_job_comp`: Boolean that tells puppet whether this module will manage the slurm job completion script.  Default is true.
 * `slurm::job_comp`: String that sets the location of the job completion script on a slurmctld.  Default is undefined.
 * `slurm::job_comp_source`: String that sets where puppet will get the source for the job completion script from.  Default is undefined.
