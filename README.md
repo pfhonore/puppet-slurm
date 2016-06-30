@@ -11,9 +11,6 @@ To use this module simply include `slurm` class for the hosts on which you wish 
 This is not exhaustive but will cover most of the parameters you can set for this class.
 
 ####General
-
-* `slurm::controller`: Boolean that decides if this host you are on will act as the slurm master, namely run the slurmctld process. Default is false.
-* `slurm::node`: Boolean that decides if this host will be a slurm client, namely run the slurmd process and accept jobs.  Default is true.
 * `slurm::version`: String that dictates what version of slurm this host will get.  Default is present.
 * `slurm::release`: String that dictates if further configuration parameters are allowed depending on major version as new features are added in slurm all the time.  Default is 14.03.  Currently up to 15.08 is defined.
 * `slurm::slurm_user`: String that dictates the name for the slurm user. By default slurm does not make it's own user but assumes that a service account is going to be used to manage slurm. This sets up a local user to take this role and makes it uniform across the cluster. Default is slurm.
@@ -59,7 +56,19 @@ This is not exhaustive but will cover most of the parameters you can set for thi
 * `slurm::manage_health_check`: Boolean that tells puppet whether this module will manage the health checking program.  Default is true.
 * `slurm::health_check_program`: String that sets the location of the health check program on a slurm client.  Default is undefined.
 * `slurm::health_check_program_source`: String that sets where puppet will get the source for the health check program from.  Default is undefined.
+* `slurm::manage_slurm_conf_nfs_mount`: Boolean that turns on sharing out the slurm.conf via a NFS mount rather than each node having an independent conf.  This makes it easier to have a consistent configuration across large clusters.  Default is false. It does not set up the NFS export.
+* `slurm::slurm_conf_nfs_location`: String that sets where the slurm.conf will be mounted.  Default is `/var/lib/slurm/etc`.
+* `slurm::slurm_conf_nfs_device`: String that sets up the NFS device to be mounted.  Default is undefined.
+* `slurm::slurm_conf_nfs_options`: String that sets the NFS options for the mount.  Default is `rw,sync,noexec,nolock,auto`.
 
+####Slurmctld
+* `slurm::controller`: Boolean that decides if this host you are on will act as the slurm master, namely run the slurmctld process. Default is false.
+* `slurm::save_state_location`: String that sets where the current state of the scheduler will be saved.  Default is `/var/lib/slurm/state`.
+* `slurm::slurmctld_log_file`: String that sets where the log for the slurmd will be written. Default is `/var/log/slurm/slurmctld.log`.
+
+####Slurmd
+* `slurm::node`: Boolean that decides if this host will be a slurm client, namely run the slurmd process and accept jobs.  Default is true.
+* `slurm::slurmd_log_file`: String that sets where the log for the slurmd will be written. Default is `/var/log/slurm/slurmd.log`.
 
 ####Slurmdbd
 
@@ -68,7 +77,8 @@ This is not exhaustive but will cover most of the parameters you can set for thi
 * `slurm::slurmdbd_storage_pass`: String that sets StoragePass in slurmdbd.conf.  This is the password for the database that the slurmdbd will use. Default is `slurmdbd`.
 * `slurm::slurmdbd_storage_user`: String that sets StorageUser in slurmdbd.conf.  This is the user name of the user that slurm will use to update the database.  Default is `slurmdbd`.
 * `slurm::slurmdbd_conf_override`: This is a hash that sets specific variables in the slurmdbd.conf.  Default is set to `$slurm::params::slurmdbd_conf_override`.
-
+* `slurm::slurmctld_log_file`: String that sets where the log for the slurmd will be written. Default is `/var/log/slurm/slurmdbd.log`.
+* `slurm::slurmdbd_archive_dir`: String that sets where the slurmdbd archive will be for when it archives data.  Default is `/var/lib/slurm/archive`.
 
 ## Development
 
