@@ -62,13 +62,13 @@ This is not exhaustive but will cover most of the parameters you can set for thi
 * `slurm::slurm_conf_nfs_options`: String that sets the NFS options for the mount.  Default is `rw,sync,noexec,nolock,auto`.
 * `slurm::job_checkpoint_dir`: String that sets JobCheckpointDir in slurm.conf.  The defines where slurm will put job checkpoints if it is managing this. Default is `/var/lib/slurm/checkpoint`.
 * `slurm::spank_plugins`: Array of Hashes that sets up the spank plugins.  Default is `slurm::params::spank_plugins`  A hiera example would be:
-> slurm::spank_plugins:
->   x11:
->     required: true
->   spunnel:
->     required: true
->     package_name: 'spunnel'
->     plugin: 'libspunnel.so'
+    slurm::spank_plugins:
+      x11:
+        required: true
+      spunnel:
+        required: true
+        package_name: 'spunnel'
+        plugin: 'libspunnel.so'
 * `slurm::slurm_conf_override`: Hash that overrides different variables in the slurm.conf.  Default is `slurm::params::slurm_conf_override`.
 * `slurm::partitionlist`: Hash that sets up the partitions in partitions.conf.  Default is `slurm::params::partitionlist`.  A hiera example would be:
 `slurm::partitionlist:
