@@ -74,7 +74,9 @@ slurm::spank_plugins:
 ```
 * `slurm::slurm_conf_override`: Hash that overrides different variables in the slurm.conf.  Default is `slurm::params::slurm_conf_override`.
 * `slurm::partitionlist`: Hash that sets up the partitions in partitions.conf.  Default is `slurm::params::partitionlist`.  A hiera example would be:
-`slurm::partitionlist:
+
+```json
+slurm::partitionlist:
   - PartitionName: 'interact'
     State: 'UP'
     Priority: '10'
@@ -89,7 +91,7 @@ slurm::spank_plugins:
     AllowGroups: 'cluster'
     Nodes: 'test02'
     Default: 'YES'`
-
+```
 ####Slurmctld
 * `slurm::controller`: Boolean that decides if this host you are on will act as the slurm master, namely run the slurmctld process. Default is false.
 * `slurm::save_state_location`: String that sets where the current state of the scheduler will be saved.  Default is `/var/lib/slurm/state`.
