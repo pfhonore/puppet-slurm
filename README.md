@@ -60,6 +60,32 @@ This is not exhaustive but will cover most of the parameters you can set for thi
 * `slurm::slurm_conf_nfs_location`: String that sets where the slurm.conf will be mounted.  Default is `/var/lib/slurm/etc`.
 * `slurm::slurm_conf_nfs_device`: String that sets up the NFS device to be mounted.  Default is undefined.
 * `slurm::slurm_conf_nfs_options`: String that sets the NFS options for the mount.  Default is `rw,sync,noexec,nolock,auto`.
+* `slurm::job_checkpoint_dir`: String that sets JobCheckpointDir in slurm.conf.  The defines where slurm will put job checkpoints if it is managing this. Default is `/var/lib/slurm/checkpoint`.
+* `slurm::spank_plugins`: Array of Hashes that sets up the spank plugins.  Default is `slurm::params::spank_plugins`  A hiera example would be:
+`slurm::spank_plugins:
+  x11:
+    required: true
+  spunnel:
+    required: true
+    package_name: 'spunnel'
+    plugin: 'libspunnel.so'`
+* `slurm::slurm_conf_override`: Hash that overrides different variables in the slurm.conf.  Default is `slurm::params::slurm_conf_override`.
+* `slurm::partitionlist`: Hash that sets up the partitions in partitions.conf.  Default is `slurm::params::partitionlist`.  A hiera example would be:
+`slurm::partitionlist:
+  - PartitionName: 'interact'
+    State: 'UP'
+    Priority: '10'
+    TRESBillingWeights: 'CPU=1.0,Mem=0.25G'
+    AllowGroups: 'cluster'
+    Nodes: 'test01'
+    Default: 'YES'
+  - PartitionName: 'general'
+    State: 'UP'
+    Priority: '10'
+    TRESBillingWeights: 'CPU=1.0,Mem=0.25G'
+    AllowGroups: 'cluster'
+    Nodes: 'test02'
+    Default: 'YES'`
 
 ####Slurmctld
 * `slurm::controller`: Boolean that decides if this host you are on will act as the slurm master, namely run the slurmctld process. Default is false.
@@ -69,6 +95,25 @@ This is not exhaustive but will cover most of the parameters you can set for thi
 ####Slurmd
 * `slurm::node`: Boolean that decides if this host will be a slurm client, namely run the slurmd process and accept jobs.  Default is true.
 * `slurm::slurmd_log_file`: String that sets where the log for the slurmd will be written. Default is `/var/log/slurm/slurmd.log`.
+* `slurm::cgroup_mountpoint`: String that sets CgroupMountpoint in cgroup.conf. Default is `/cgroup`.
+* `slurm::cgroup_automount`: Boolean that sets CgroupAutomount in cgroup.conf. Default is true.
+* `slurm::cgroup_contrain_cores`: Boolean that sets ConstrainCores in cgroup.conf. Default is false.
+* `slurm::cgroup_task_affinity`: Boolean that sets TaskAffinity in cgroup.conf. Default is false.
+* `slurm::cgroup_allowed_ram_space`: String that sets AllowedRAMSpace in cgroup.conf. Default is 100.
+* `slurm::cgroup_allowed_swap_space`: String that sets AllowedSwapSpace in cgroup.conf. Default is 0.
+* `slurm::cgroup_constrain_ram_space`: Boolean that sets ConstrainRAMSpace in cgroup.conf. Default is false.
+* `slurm::cgroup_constrain_swap_space`: Boolean that sets ConstrainSwapSpace in cgroup.conf. Default is false.
+* `slurm::cgroup_max_ram_percent`: String that sets MaxRAMPercent in cgroup.conf. Default is 100.
+* `slurm::cgroup_max_swap_percent`: String that sets MaxSwapPercent in cgroup.conf. Default is 100.
+* `slurm::cgroup_min_ram_space`: String that sets MinRAMSpace in cgroup.conf. Default is 30.
+* `slurm::cgroup_constrain_devices`: Boolean that sets ConstrainDevices in cgroup.conf. Default is false.
+* `slurm::cgroup_allowed_devices`: Hash that sets the allowed devices using the allowed devices template.  Default is `slurm::params::cgroup_allowed_devices`.
+* `slurm::socket`: String that sets the Socket variable in node.conf for the node in question.  Default is undefined.
+* `slurm::cores_per_socket`: String that sets the CoresPerSocket variable in node.conf for the node in question.  Default is undefined.
+* `slurm::threads_per_core`: String that sets the ThreadsPerCore variable in node.conf for the node in question.  Default is undefined.
+* `slurm::tmp_disk`: String that sets the TmpDisk variable in node.conf for the node in question.  Default is undefined.
+* `slurm::real_memory`: String that sets the RealMemory variable in node.conf for the node in question.  Default is undefined.
+* `slurm::feature`: String that sets the Feature variable in node.conf for the node in question.  Default is undefined.
 
 ####Slurmdbd
 
