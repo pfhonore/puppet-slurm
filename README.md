@@ -12,7 +12,7 @@ This is not exhaustive but will cover most of the parameters you can set for thi
 
 ####General
 * `slurm::version`: String that dictates what version of slurm this host will get.  Default is present.
-* `slurm::release`: String that dictates if further configuration parameters are allowed depending on major version as new features are added in slurm all the time.  Default is 14.03.  Currently up to 15.08 is defined.
+* `slurm::release`: String that dictates if further configuration parameters are allowed depending on major version as new features are added in slurm all the time.  Default is 14.03.  Currently up to 16.05 is defined.
 * `slurm::slurm_user`: String that dictates the name for the slurm user. By default slurm does not make it's own user but assumes that a service account is going to be used to manage slurm. This sets up a local user to take this role and makes it uniform across the cluster. Default is slurm.
 * `slurm::slurm_user_uid`: Integer that dictates the uid for `slurm_user`. slurm requires that the uid is consistent across all hosts in the cluster.  Default is undefined.
 * `slurm::slurm_user_group`: String that dictates the name of the `slurm_user` group.  Similar to `slurm_user` but now for that user's group. It needs to be consistent across all hosts in a cluster. Default is slurm.
