@@ -328,7 +328,7 @@ class slurm::params {
       'MessageTimeout' => '10',
       'PluginDir' => '/usr/lib64/slurm',
       'TrackSlurmctldDown' => 'no',
-    }
+    },
     '16.05' => {
       'ArchiveDir' => '/tmp',
       'ArchiveEvents' => 'no',
