@@ -220,7 +220,7 @@ class slurm::params {
       'UsePAM' => '0',
       'VSizeFactor' => '0',
       'WaitTime' => '0',
-    }
+    },
     '16.05' => {
       'AccountingStorageType' => 'accounting_storage/slurmdbd',
       'AccountingStoreJobComment' => 'YES',
