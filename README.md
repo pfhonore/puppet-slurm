@@ -73,6 +73,9 @@ slurm::spank_plugins:
     plugin: 'libspunnel.so'
 ```
 * `slurm::slurm_conf_override`: Hash that overrides different variables in the slurm.conf.  Default is `slurm::params::slurm_conf_override`.
+* `slurm::slurm_conf_source`: String that overrides the automatically generated slurm.conf, it will instead place the file that you specify as the slurm.conf.  Default is undefined.
+* `slurm::partitionlist_source`: String that overrides the automatically generated partitions.conf, it will instead place the file that you specify as the partitions.conf.  Default is undefined.
+* `slurm::node_source`: String that overrides the automatically generated nodes.conf, it will instead place the file that you specify as the nodes.conf.  This is useful if you need to define nodes that are not in puppet.  Default is undefined.
 * `slurm::partitionlist`: Hash that sets up the partitions in partitions.conf.  Default is `slurm::params::partitionlist`.  A hiera example would be:
 
 ```json
