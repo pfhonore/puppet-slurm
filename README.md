@@ -32,6 +32,7 @@ This is not exhaustive but will cover most of the parameters you can set for thi
 * `slurm::slurmd_port`: String that sets SlurmdPort in slurm.conf.  This defines the port over which slurmd will listen. Default is `6818`.
 * `slurm::slurmctld_port`: String that sets SlurmctldPort in slurm.conf.  This defines the port over which slurmctld will listen.  Default is `6817`.
 * `slurm::slurmdbd_port`: String that sets AccountingStoragePort and DefaultStoragePort in slurm.conf and DbdPort in slurmdbd.conf.  This defines the port over which slurmdbd will listen. Default is `6819`.
+* `slurm::manage_logrotate`: Boolean that tells the module whether or not it needs to manage logrotate for the logs it create.  Default is true.
 * `slurm::manage_prolog`: Boolean that tells puppet whether this module will manage the slurm prolog.  Default is true.
 * `slurm::prolog`: String that sets the location of the prolog on a slurm client.  Default is undefined.
 * `slurm::prolog_source`: String that sets where puppet will get the source for the prolog from.  Default is undefined.
