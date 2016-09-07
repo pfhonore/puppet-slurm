@@ -251,6 +251,11 @@ class slurm (
       $slurmdbd_conf_release_defaults = $slurm::params::slurmdbd_conf_defaults['15.08']
       $partition_keys                 = $slurm::params::partition_keys['15.08']
     }
+    '16.05': {
+      $slurm_conf_release_defaults    = $slurm::params::slurm_conf_defaults['15.08']
+      $slurmdbd_conf_release_defaults = $slurm::params::slurmdbd_conf_defaults['15.08']
+      $partition_keys                 = $slurm::params::partition_keys['15.08']
+    }
     default: {
       fail("Module ${module_name} only supports release 14.03, 14.11 and 15.08, ${release} given.")
     }
