@@ -64,7 +64,7 @@ class slurm::common::setup {
       ensure => 'directory',
       owner  => $_dir_owner,
       group  => $_dir_group,
-      mode   => '0700',
+      mode   => '0755',
     }
   }
 
