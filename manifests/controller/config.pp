@@ -19,14 +19,14 @@ class slurm::controller::config {
     require => File[$slurm::shared_state_dir],
   }
 
-  file { 'SlurmConfNFSLocation':
-    ensure => 'directory',
-    path   => $slurm::slurm_conf_nfs_location,
-    owner  => 'root',
-    group  => 'root',
-    mode   => '0755',
-    require => File[$slurm::shared_state_dir],
-  }
+  #file { 'SlurmConfNFSLocation':
+  #  ensure => 'directory',
+  #  path   => $slurm::slurm_conf_nfs_location,
+  #  owner  => 'root',
+  #  group  => 'root',
+  #  mode   => '0755',
+  #  require => File[$slurm::shared_state_dir],
+  #}
 
   if $slurm::manage_slurm_conf {
 
