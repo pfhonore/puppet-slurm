@@ -28,7 +28,7 @@ class slurm::controller::config {
     require => File[$slurm::shared_state_dir],
   }
 
-  if $slurm::manage_slurm_conf {
+  #if $slurm::manage_slurm_conf {
 
     # file { 'NFS slurm.conf':
     #   ensure  => 'present',
@@ -97,7 +97,7 @@ class slurm::controller::config {
     #   require => File['slurm-nodes.conf'],
     # }
 
-  }
+  #}
 
   if $slurm::manage_state_dir_nfs_mount {
     mount { 'StateSaveLocation':
