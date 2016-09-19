@@ -44,6 +44,40 @@ class slurm::common::config {
           require => Mount['SlurmConfNFSMount'],
         }
       }
+    } else {
+        file { 'NFS slurm.conf':
+          ensure  => 'present',
+          path    => "${slurm::slurm_conf_nfs_location}/slurm.conf",
+          content => $slurm::slurm_conf_content,
+          source  => $slurm::slurm_conf_source,
+          owner   => 'root',
+          group   => 'root',
+          mode    => '0644',
+          require => File['SlurmConfNFSLocation'],
+        }
+
+        file { 'NFS slurm-partitions.conf':
+          ensure  => 'present',
+          path    => "${slurm::slurm_conf_nfs_location}/partitions.conf",
+          content => $slurm::partitionlist_content,
+          source  => $slurm::partitionlist_source,
+          owner   => 'root',
+          group   => 'root',
+          mode    => '0644',
+          require => File['SlurmConfNFSLocation'],
+        }
+
+        if $slurm::node_source {
+          file { 'slurm-nodes.conf':
+            ensure => 'present',
+            path   => "${slurm::slurm_conf_nfs_location}/nodes.conf",
+            source => $slurm::node_source,
+            owner  => 'root',
+            group  => 'root',
+            mode   => '0644',
+            require => File['SlurmConfNFSLocation'],
+          }
+        }
     }
 
     file { 'plugstack.conf.d':
