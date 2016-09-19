@@ -38,7 +38,7 @@ class slurm::controller::config {
       owner   => 'root',
       group   => 'root',
       mode    => '0644',
-      require => File['SlurmConfNFSLocation'],
+      #require => File['SlurmConfNFSLocation'],
     }
 
     file { 'NFS slurm-partitions.conf':
@@ -49,7 +49,7 @@ class slurm::controller::config {
       owner   => 'root',
       group   => 'root',
       mode    => '0644',
-      require => File['SlurmConfNFSLocation'],
+      #require => File['SlurmConfNFSLocation'],
     }
 
     if $slurm::node_source {
@@ -60,7 +60,7 @@ class slurm::controller::config {
         owner  => 'root',
         group  => 'root',
         mode   => '0644',
-        require => File['SlurmConfNFSLocation'],
+        #require => File['SlurmConfNFSLocation'],
       }
     } else {
       datacat { 'slurm-nodes.conf':
@@ -70,7 +70,7 @@ class slurm::controller::config {
         owner    => 'root',
         group    => 'root',
         mode     => '0644',
-        require => File['SlurmConfNFSLocation'],
+        #require => File['SlurmConfNFSLocation'],
       }
 
       Datacat_fragment <<| tag == $slurm::slurm_nodelist_tag |>>
