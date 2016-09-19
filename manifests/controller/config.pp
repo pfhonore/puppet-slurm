@@ -72,30 +72,30 @@ class slurm::controller::config {
     #     mode     => '0644',
     #     require => File['SlurmConfNFSLocation'],
     #   }
-
-      Datacat_fragment <<| tag == $slurm::slurm_nodelist_tag |>>
-    }
-
-    file { 'Link slurm.conf':
-      ensure  => 'link',
-      path    => $slurm::slurm_conf_path,
-      target  => "${slurm::slurm_conf_nfs_location}/slurm.conf",
-      require => File['NFS slurm.conf'],
-    }
-
-    file { 'Link slurm-partitions.conf':
-      ensure  => 'link',
-      path    => $slurm::partition_conf_path,
-      target  => "${slurm::slurm_conf_nfs_location}/partitions.conf",
-      require => File['NFS slurm-partitions.conf'],
-    }
-
-    file { 'Controller Link slurm-nodes.conf':
-      ensure => 'link',
-      path   => $slurm::node_conf_path,
-      target => "${slurm::slurm_conf_nfs_location}/nodes.conf",
-      require => File['slurm-nodes.conf'],
-    }
+    #
+    #   Datacat_fragment <<| tag == $slurm::slurm_nodelist_tag |>>
+    # }
+    #
+    # file { 'Link slurm.conf':
+    #   ensure  => 'link',
+    #   path    => $slurm::slurm_conf_path,
+    #   target  => "${slurm::slurm_conf_nfs_location}/slurm.conf",
+    #   require => File['NFS slurm.conf'],
+    # }
+    #
+    # file { 'Link slurm-partitions.conf':
+    #   ensure  => 'link',
+    #   path    => $slurm::partition_conf_path,
+    #   target  => "${slurm::slurm_conf_nfs_location}/partitions.conf",
+    #   require => File['NFS slurm-partitions.conf'],
+    # }
+    #
+    # file { 'Controller Link slurm-nodes.conf':
+    #   ensure => 'link',
+    #   path   => $slurm::node_conf_path,
+    #   target => "${slurm::slurm_conf_nfs_location}/nodes.conf",
+    #   require => File['slurm-nodes.conf'],
+    # }
 
   }
 
