@@ -28,4 +28,14 @@ describe 'threadcountpercore Fact' do
     Facter.fact(:corecountpercpu).stubs(:value).returns(8)
     Facter.fact(:threadcountpercore).value.should == 1
   end
+
+  it "should return 1" do
+    cpuinfo = cpuinfo_fixture_read('xeon_E52660v2_dualsocket_cpuinfo')
+    File.stubs(:readlines).with("/proc/cpuinfo").returns(cpuinfo)
+    Facter::Util::FileRead.stubs(:read).with('/proc/cpuinfo').returns(cpuinfo)
+    Facter.fact(:physicalprocessorcount).stubs(:value).returns(2)
+    Facter.fact(:processorcount).stubs(:value).returns(20)
+    Facter.fact(:corecountpercpu).stubs(:value).returns(10)
+    Facter.fact(:threadcountpercore).value.should == 1
+  end
 end

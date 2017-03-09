@@ -19,6 +19,12 @@ describe 'corecountpercpu Fact' do
     Facter.fact(:corecountpercpu).value.should == 4
   end
 
+  it "should return 10" do
+    File.stubs(:exists?).with('/proc/cpuinfo').returns(true)
+    Facter::Util::FileRead.stubs(:read).with('/proc/cpuinfo').returns(cpuinfo_fixture_read('xeon_E52660v2_dualsocket_cpuinfo'))
+    Facter.fact(:corecountpercpu).value.should == 10
+  end
+
   it "should return 1 as default corecount" do
     File.stubs(:exists?).with('/proc/cpuinfo').returns(true)
     Facter::Util::FileRead.stubs(:read).with('/proc/cpuinfo').returns('foobar')
